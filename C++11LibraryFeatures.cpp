@@ -45,7 +45,6 @@ return static_cast<T&&>(arg);
 };
 
 //	An example of a function wrapper which just forwards other A objects to a new A object's copy or move constructor:
-
 struct AF
 {
 AF() = default;
@@ -105,7 +104,6 @@ class MyString
 //========================
 //	4. Type traits
 //========================
-
 /*
 //	Type traits defines a compile - time template - based interface to query or modify the properties of types.
 static_assert(std::is_integral<int>::value);
@@ -113,15 +111,16 @@ static_assert(std::is_same<int, int>::value);
 static_assert(std::is_same<std::conditional<true, int, double>::type, int>::value);
 */
 
+
 //========================
 //	5. Smart pointers
 //========================
-
 /*
 //	C++11 introduces new smart(er) pointers: std::unique_ptr, std::shared_ptr, std::weak_ptr.
 //  std::auto_ptr now becomes deprecated and then eventually removed in C++17.
 //	std::unique_ptr is a non - copyable, movable smart pointer that properly manages arrays and STL containers.
-//	Note : Prefer using the std::make_X helper functions as opposed to using constructors.See the sections for std::make_unique and std::make_shared.
+//	Note : Prefer using the std::make_X helper functions as opposed to using constructors.
+//  See the sections for std::make_unique and std::make_shared.
 
 std::unique_ptr<Foo> p1{ new Foo{} };  // `p1` owns `Foo`
 if (p1) {
@@ -161,7 +160,6 @@ std::shared_ptr<T> p1{ new T{} };
 foo(p1);
 bar(p1);
 baz(p1);
-
 */
 
 
@@ -181,10 +179,10 @@ std::chrono::duration<double> elapsed_seconds = end - start;
 double t = elapsed_seconds.count(); // t number of seconds, represented as a `double`
 */
 
+
 //========================
 //	7. Tuples
 //========================
-
 /*
 //	Tuples are a fixed - size collection of heterogeneous values.
 //  Access the elements of a std::tuple by unpacking using std::tie, or using std::get.
@@ -201,7 +199,6 @@ std::get<2>(playerProfile); // "NYI"
 //========================
 //	8. std::tie
 //========================
-
 /*
 //	Creates a tuple of lvalue references.Useful for unpacking std::pair and std::tuple objects.
 //  Use std::ignore as a placeholder for ignored values.In C++17, structured bindings should be used instead.
@@ -284,7 +281,8 @@ foo(std::make_shared<T>(), function_that_throws(), std::make_shared<T>());
 //  See the sections on : std::thread
 
 std::async
-std::async runs the given function either asynchronously or lazily - evaluated, then returns a std::future which holds the result of that function call.
+// std::async runs the given function either asynchronously or lazily - evaluated,
+// then returns a std::future which holds the result of that function call.
 
 //The first parameter is the policy which can be :
 
