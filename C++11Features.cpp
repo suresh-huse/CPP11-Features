@@ -202,31 +202,31 @@ int main()
 	std::unique_ptr<int> p2 = std::move(p1); // transfer ownership
 
 
-											 //============================================================										 
-											 //   2. Move semantics
-											 //============================================================
-											 //	Move semantics is mostly about performance optimization : the ability to move an object without the expensive overhead of copying.
-											 //  The difference between a copy and a move is that a copy leaves the source unchanged, 
-											 //  and a move will leave the source either unchanged or radically different -- depending on what the source is.
-											 //  For plain old data, a move is the same as a copy.
+	//============================================================										 
+	//   2. Move semantics
+	//============================================================
+	//	Move semantics is mostly about performance optimization : the ability to move an object without the expensive overhead of copying.
+	//  The difference between a copy and a move is that a copy leaves the source unchanged, 
+	//  and a move will leave the source either unchanged or radically different -- depending on what the source is.
+	//  For plain old data, a move is the same as a copy.
 
-											 //	To move an object means to transfer ownership of some resource it manages to another object.
-											 //  You could think of this as changing pointers held by the source object to be moved, or now held, by the destination object; 
-											 //  the resource remains in its location in memory.
-											 //  Such an inexpensive transfer of resources is extremely useful when the source is an rvalue, 
-											 //  where the potentially dangerous side - effect of changing the source after the move is redundant ,
-											 //  since the source is a temporary object that won't be accessible later.
+	//	To move an object means to transfer ownership of some resource it manages to another object.
+	//  You could think of this as changing pointers held by the source object to be moved, or now held, by the destination object; 
+	//  the resource remains in its location in memory.
+	//  Such an inexpensive transfer of resources is extremely useful when the source is an rvalue, 
+	//  where the potentially dangerous side - effect of changing the source after the move is redundant ,
+	//  since the source is a temporary object that won't be accessible later.
 
-											 //	Moves also make it possible to transfer objects such as std::unique_ptrs, 
-											 //  smart pointers that are designed to hold a pointer to a unique object, from one scope to another.
-											 //	See the sections on : rvalue references, defining move special member functions, std::move, std::forward, forwarding references.
+	//	Moves also make it possible to transfer objects such as std::unique_ptrs, 
+	//  smart pointers that are designed to hold a pointer to a unique object, from one scope to another.
+	//	See the sections on : rvalue references, defining move special member functions, std::move, std::forward, forwarding references.
 
-											 //	Rvalue references
-											 //	C++11 introduces a new reference termed the rvalue reference.An rvalue reference to A, 
-											 //  which is a non - template type parameter(such as int, or a user - defined type), 
-											 //  is created with the syntax A&&.Rvalue references only bind to rvalues.
+	//	Rvalue references
+	//	C++11 introduces a new reference termed the rvalue reference.An rvalue reference to A, 
+	//  which is a non - template type parameter(such as int, or a user - defined type), 
+	//  is created with the syntax A&&.Rvalue references only bind to rvalues.
 
-											 //	Type deduction with lvalues and rvalues :
+	//	Type deduction with lvalues and rvalues :
 	Buffer<int> b1;
 	Buffer<int> b2("buf2", 64);
 	Buffer<int> b3 = b2;
@@ -245,21 +245,21 @@ int main()
 	am1 = fmove(AM{}); // move-assignment from rvalue temporary
 
 
-					   //============================================================
-					   //	3. Forwarding references
-					   //============================================================
-					   //	Also known(unofficially) as universal references.
-					   //  A forwarding reference is created with the syntax T&& where T is a template type parameter, 
-					   //  or using auto&&.This enables two major features : move semantics; 
-					   //  and perfect forwarding, the ability to pass arguments that are either lvalues or rvalues.
-					   //	Forwarding references allow a reference to bind to either an lvalue or rvalue depending on the type.
-					   //  Forwarding references follow the rules of reference collapsing :
+	//============================================================
+	//	3. Forwarding references
+	//============================================================
+	//	Also known(unofficially) as universal references.
+	//  A forwarding reference is created with the syntax T&& where T is a template type parameter, 
+	//  or using auto&&.This enables two major features : move semantics; 
+	//  and perfect forwarding, the ability to pass arguments that are either lvalues or rvalues.
+	//	Forwarding references allow a reference to bind to either an lvalue or rvalue depending on the type.
+	//  Forwarding references follow the rules of reference collapsing :
 
-					   //	T& & becomes T&
-					   //	T& && becomes T&
-					   //	T&& & becomes T&
-					   //	T&& && becomes T&&
-					   //	auto type deduction with lvalues and rvalues:
+	//	T& & becomes T&
+	//	T& && becomes T&
+	//	T&& & becomes T&
+	//	T&& && becomes T&&
+	//	auto type deduction with lvalues and rvalues:
 
 	int x = 0;
 	f(0); // deduces as f(int&&)
@@ -317,18 +317,18 @@ int main()
 	add(1, 2.0); // == 3.0
 	add(1.5, 1.5); // == 3.0
 
-				   //	The trailing return type in the above example is the declared type(see section on decltype) of the expression x + y.
-				   //	For example, if x is an integer and y is a double, decltype(x + y) is a double.Therefore, 
-				   //	the above function will deduce the type depending on what type the expression x + y yields.
-				   //	Notice that the trailing return type has access to its parameters, and this when appropriate.
+	//	The trailing return type in the above example is the declared type(see section on decltype) of the expression x + y.
+	//	For example, if x is an integer and y is a double, decltype(x + y) is a double.Therefore, 
+	//	the above function will deduce the type depending on what type the expression x + y yields.
+	//	Notice that the trailing return type has access to its parameters, and this when appropriate.
 
 
-				   //============================================================
-				   // 6. Initializer lists
-				   //============================================================
-				   //   A lightweight array - like container of elements created using a "braced list" syntax.
-				   //   For example, { 1, 2, 3 } creates a sequences of integers, 
-				   //   that has type std::initializer_list<int>.Useful as a replacement to passing a vector of objects to a function.
+	//============================================================
+	// 6. Initializer lists
+	//============================================================
+	//   A lightweight array - like container of elements created using a "braced list" syntax.
+	//   For example, { 1, 2, 3 } creates a sequences of integers, 
+	//   that has type std::initializer_list<int>.Useful as a replacement to passing a vector of objects to a function.
 
 	auto list = { 1, 2, 3 };
 	sum(list); // == 6
@@ -336,10 +336,10 @@ int main()
 	sum({}); // == 0
 
 
-			 //============================================================
-			 //  7. Static assertions
-			 //============================================================
-			 //	Assertions that are evaluated at compile - time.
+	//============================================================
+	//  7. Static assertions
+	//============================================================
+	//	Assertions that are evaluated at compile - time.
 
 	constexpr int x1 = 0;
 	constexpr int y1 = 0;
@@ -373,23 +373,23 @@ int main()
 
 	auto getXRef = [&]() -> int& { return xLambda; };
 	getXRef(); // int& to `x`
-			   //  By default, value - captures cannot be modified inside the lambda because the compiler - generated method is marked as const.
-			   //  The mutable keyword allows modifying captured variables.
-			   //  The keyword is placed after the parameter - list(which must be present even if it is empty).
+	//  By default, value - captures cannot be modified inside the lambda because the compiler - generated method is marked as const.
+	//  The mutable keyword allows modifying captured variables.
+	//  The keyword is placed after the parameter - list(which must be present even if it is empty).
 
 	xLambda = 1;
 	auto f1 = [&xLambda] { xLambda = 2; }; // OK: x is a reference and modifies the original
 
-										   //auto f2 = [x] { x = 2; }; // ERROR: the lambda can only perform const-operations on the captured value
-										   // vs.
+	//auto f2 = [x] { x = 2; }; // ERROR: the lambda can only perform const-operations on the captured value
+	// vs.
 	auto f3 = [xLambda]() mutable { xLambda = 2; }; // OK: the lambda can perform any operations on the captured value
 
 
-													//============================================================
-													//  9. decltype
-													//============================================================
-													//	decltype is an operator which returns the declared type of an expression passed to it.
-													//   cv - qualifiers and references are maintained if they are part of the expression.
+	//============================================================
+	//  9. decltype
+	//============================================================
+	//	decltype is an operator which returns the declared type of an expression passed to it.
+	//   cv - qualifiers and references are maintained if they are part of the expression.
 
 	int aa = 1; // `a` is declared as type `int`
 	decltype(aa) bb = aa; // `decltype(a)` is `int`
@@ -403,11 +403,11 @@ int main()
 	add(1, 2.0); // `decltype(x + y)` => `decltype(3.0)` => `double`
 
 
-				 //============================================================
-				 //	10. Template aliases
-				 //============================================================
-				 //	Semantically similar to using a typedef however, 
-				 //  template aliases with using are easier to read and are compatible with templates.
+	//============================================================
+	//	10. Template aliases
+	//============================================================
+	//	Semantically similar to using a typedef however, 
+	//  template aliases with using are easier to read and are compatible with templates.
 
 	Vec<int> vec; // std::vector<int>
 	using String = std::string;
@@ -425,12 +425,12 @@ int main()
 	foo1(nullptr); // calls foo(char*)
 
 
-				   //============================================================
-				   //   12. Strongly - typed enums
-				   //============================================================
-				   //	Type - safe enums that solve a variety of problems with C - style enums including : implicit conversions, 
-				   //  inability to specify the underlying type, scope pollution.
-				   //  Specifying underlying type as `unsigned int`
+    //============================================================
+    //   12. Strongly - typed enums
+    //============================================================
+    //	Type - safe enums that solve a variety of problems with C - style enums including : implicit conversions, 
+    //  inability to specify the underlying type, scope pollution.
+    //  Specifying underlying type as `unsigned int`
 	enum class Color : unsigned int { Red = 0xff0000, Green = 0xff00, Blue = 0xff };
 	//  `Red`/`Green` in `Alert` don't conflict with `Color`
 	enum class Alert : bool { Red, Green };
@@ -448,7 +448,7 @@ int main()
 							//  call square2(int)
 							//  mov DWORD PTR [rbp-8], eax
 
-							//	constexpr values are those that the compiler can evaluate at compile - time:
+	//	constexpr values are those that the compiler can evaluate at compile - time:
 	const int xc = 123;
 	//constexpr const int& yc = xc; // error -- constexpr variable `y` must be initialized by a constant expression
 
@@ -481,40 +481,40 @@ int main()
 	foo.foo; // == 0
 
 
-			 //============================================================
-			 //   15. User - defined literals
-			 //============================================================
-			 //	User - defined literals allow you to extend the language and add your own syntax.To create a literal,
-			 //  define a T operator "" X(...) { ... } function that returns a type T, with a name X.
-			 //  Note that the name of this function defines the name of the literal.
-			 //  Any literal names not starting with an underscore are reserved and won't be invoked. 
-			 //	There are rules on what parameters a user-defined literal function should accept, according to what type the literal is called on.
+	//============================================================
+	//   15. User - defined literals
+	//============================================================
+	//	User - defined literals allow you to extend the language and add your own syntax.To create a literal,
+	//  define a T operator "" X(...) { ... } function that returns a type T, with a name X.
+	//  Note that the name of this function defines the name of the literal.
+	//  Any literal names not starting with an underscore are reserved and won't be invoked. 
+	//	There are rules on what parameters a user-defined literal function should accept, according to what type the literal is called on.
 
-			 //	Converting Celsius to Fahrenheit :
+	//	Converting Celsius to Fahrenheit :
 
-			 //  `unsigned long long` parameter required for integer literal.
-			 //long long operator "" _celsius(unsigned long long tempCelsius) {
-			 //	return std::llround(tempCelsius * 1.8 + 32);
-			 //}
+	//  `unsigned long long` parameter required for integer literal.
+	//long long operator "" _celsius(unsigned long long tempCelsius) {
+	//	return std::llround(tempCelsius * 1.8 + 32);
+	//}
 
 	24_celsius; // == 75
 	long sq = 5_Square; // 25
 	sq = 6_Square; // 36
-				   //String to integer conversion :
-				   //  `const char*` and `std::size_t` required as parameters.
-				   //int operator "" _int(const char* str, std::size_t) {
-				   //	return std::stoi(str);
-				   //}
+	//String to integer conversion :
+	//  `const char*` and `std::size_t` required as parameters.
+	//int operator "" _int(const char* str, std::size_t) {
+	//	return std::stoi(str);
+	//}
 
 	"123"_int; // == 123, with type `int`
 
 
-			   //============================================================
-			   //   16. Explicit virtual overrides
-			   //============================================================
-			   //	Specifies that a virtual function overrides another virtual function.
-			   //  If the virtual function does not override a parent's virtual function,
-			   //	throws a compiler error.
+	//============================================================
+	//   16. Explicit virtual overrides
+	//============================================================
+	//	Specifies that a virtual function overrides another virtual function.
+	//  If the virtual function does not override a parent's virtual function,
+	//	throws a compiler error.
 
 	struct A {
 		virtual void foo() {};
@@ -574,10 +574,10 @@ int main()
 			 //bool bbe = be; // error copy-initialization does not consider B::operator bool()
 
 
-			 //============================================================
-			 //   19. Default functions
-			 //============================================================
-			 //	A more elegant, efficient way to provide a default implementation of a function, such as a constructor.
+	//============================================================
+	//   19. Default functions
+	//============================================================
+	//	A more elegant, efficient way to provide a default implementation of a function, such as a constructor.
 
 	struct AD
 	{
@@ -603,11 +603,11 @@ int main()
 	CD cd; // cd.x == 1
 
 
-		   //============================================================
-		   //   20. Deleted functions
-		   //============================================================
-		   //	A more elegant, efficient way to provide a deleted implementation of a function.
-		   //	Useful for preventing copies on objects.
+	//============================================================
+	//   20. Deleted functions
+	//============================================================
+	//	A more elegant, efficient way to provide a deleted implementation of a function.
+	//	Useful for preventing copies on objects.
 
 	class AX
 	{
@@ -655,15 +655,15 @@ int main()
 	AC1 bc1(0, 0); // calls AC1::AC1(int, int)
 	AC1 cc1 = { 0, 0 }; // calls AC1::AC1(int, int)
 	AC1 dc1{ 0, 0, 0 }; // calls AC1::AC1(int, int, int)
-						//	Note that the braced list syntax does not allow narrowing :
+	//	Note that the braced list syntax does not allow narrowing :
 
 	struct AC2 {
 		AC2(int) {}
 	};
 
 	AC2 ac2(1.1); // OK
-				  //  AC2 bc2{ 1.1 }; // Error narrowing conversion from double to int
-				  //  Note that if a constructor accepts a std::initializer_list, it will be called instead :
+	//  AC2 bc2{ 1.1 }; // Error narrowing conversion from double to int
+	//  Note that if a constructor accepts a std::initializer_list, it will be called instead :
 
 	struct AC3 {
 		AC3(int) {}
@@ -678,10 +678,10 @@ int main()
 	AC3 dc3{ 0, 0, 0 }; // calls AC3::AC3(std::initializer_list<int>)
 
 
-						//============================================================
-						//   23. Explicit conversion functions
-						//============================================================
-						//	Conversion functions can now be made explicit using the explicit specifier.
+	//============================================================
+	//   23. Explicit conversion functions
+	//============================================================
+	//	Conversion functions can now be made explicit using the explicit specifier.
 
 	struct AEC
 	{
@@ -698,29 +698,29 @@ int main()
 
 	BEC bec;
 	if (bec); // OK calls BEC::operator bool()
-			  //  bool bb = bec; // error copy-initialization does not consider B::operator bool()
+	//  bool bb = bec; // error copy-initialization does not consider B::operator bool()
 
 
-			  //============================================================
-			  //   24. Inline namespaces
-			  //============================================================
-			  //	All members of an inline namespace are treated as if they were part of its parent namespace, 
-			  //  allowing specialization of functions and easing the process of versioning.
-			  //  This is a transitive property, if A contains B, which in turn contains C and both B and C are inline namespaces, 
-			  //  C's members can be used as if they were on A.
+	//============================================================
+	//   24. Inline namespaces
+	//============================================================
+	//	All members of an inline namespace are treated as if they were part of its parent namespace, 
+	//  allowing specialization of functions and easing the process of versioning.
+	//  This is a transitive property, if A contains B, which in turn contains C and both B and C are inline namespaces, 
+	//  C's members can be used as if they were on A.
 
 	int version{ Program::getVersion() };              // Uses getVersion() from Version2
 	int oldVersion{ Program::Version1::getVersion() }; // Uses getVersion() from Version1
-													   //  bool firstVersion{ Program::isFirstVersion() };    // Does not compile when Version2 is added
+	//  bool firstVersion{ Program::isFirstVersion() };    // Does not compile when Version2 is added
 
 
-													   //============================================================
-													   //   25. Non - static data member initializers
-													   //============================================================
-													   //	Allows non - static data members to be initialized where they are declared,
-													   //  potentially cleaning up constructors of default initializations.
+	//============================================================
+	//   25. Non - static data member initializers
+	//============================================================
+	//	Allows non - static data members to be initialized where they are declared,
+	//  potentially cleaning up constructors of default initializations.
 
-													   //  Default initialization prior to C++11
+	//  Default initialization prior to C++11
 	class Human1 {
 		Human1() : age(0) {}
 	private:
