@@ -294,8 +294,8 @@ std::launch::async Run the callable object on a new thread.
 std::launch::deferred Perform lazy evaluation on the current thread.
 int foo()
 {
-// Do something here, then return the result.
-return 1000;
+	// Do something here, then return the result.
+	return 1000;
 }
 
 auto handle = std::async(std::launch::async, foo);  // create an async task
