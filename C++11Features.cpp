@@ -728,7 +728,8 @@ int main()
 	};
 
 	//  Default initialization on C++11
-	class Human2 {
+	class Human2 
+	{
 	private:
 		unsigned age{ 0 };
 	};
