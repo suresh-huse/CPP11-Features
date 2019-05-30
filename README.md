@@ -1,4 +1,4 @@
-Author - Suresh Huse
+**Author - Suresh Huse
 
 C++11 Features explained in Visual Studio 2017 Project.
 
@@ -6,9 +6,10 @@ C++11 Features explained in Visual Studio 2017 Project.
 
 Open the solution in Visual Studio 2017 and build the solution.
 Dont forget to make Project Properties as below.
-===> C/C++ > Language >  C++ Language Standard > ISO C++ Latest Draft Standard (/std:c++latest)
-===> Keep stdafx.h file at the project folder.
-You can debug one by one feature and understand. Try inserting you examples for your better understanding.
+*C/C++ > Language >  C++ Language Standard > ISO C++ Latest Draft Standard (/std:c++latest)*
+*Keep stdafx.h file at the project folder.*
+
+You can debug one by one feature and understand. Try new examples for your better understanding.
 
 **C++11 includes the following new language features:**
 
