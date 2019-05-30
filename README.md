@@ -1,4 +1,4 @@
-**Author - Suresh Huse
+**Author - Suresh Huse**
 
 C++11 Features explained in Visual Studio 2017 Project.
 
