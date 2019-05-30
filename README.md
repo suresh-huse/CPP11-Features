@@ -1,6 +1,9 @@
-# CPP11-Features-Project
+CPP11-Features-Project
 Author - Suresh Huse
+
 C++11 Features explained in Visual Studio 2017 Project.
+
+*Start with the Main Function of C++11Features.cpp*
 
 Open the solution in Visual Studio 2017 and build the solution.
 Dont forget to make Project Properties as below.
