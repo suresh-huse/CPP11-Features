@@ -1,4 +1,3 @@
-CPP11-Features-Project
 Author - Suresh Huse
 
 C++11 Features explained in Visual Studio 2017 Project.
@@ -11,7 +10,7 @@ Dont forget to make Project Properties as below.
 ===> Keep stdafx.h file at the project folder.
 You can debug one by one feature and understand. Try inserting you examples for your better understanding.
 
-C++11 includes the following new language features:
+**C++11 includes the following new language features:**
 
   -  move semantics
   -  variadic templates
@@ -42,7 +41,7 @@ C++11 includes the following new language features:
   -  right angle brackets
 
 
-C++11 includes the following new library features:
+**C++11 includes the following new library features:**
 
   -  std::move
   -  std::forward
