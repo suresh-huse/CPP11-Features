@@ -1,17 +1,5 @@
 #pragma once
-#include "../stdc++.h"
-#include "stdafx.h"
-#include <vector>
-#include<map>
-#include <iostream>
-#include <functional>
-#include <memory>
-#include <string> 
-#include <algorithm>
-#include <array>
-
-using namespace std;
-
+#include "stdc++.h"
 
 template <typename T>
 class Buffer
