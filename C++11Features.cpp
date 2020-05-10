@@ -1,3 +1,5 @@
+#pragma once
+#include "../stdc++.h"
 #include "stdafx.h"
 #include <vector>
 #include<map>
@@ -128,6 +130,12 @@ int sum(const std::initializer_list<int>& list) {
 	}
 
 	return total;
+}
+
+template <typename First, typename... Args>
+auto sumTemplate(const First first, const Args... args) -> decltype(first) {
+	const auto values = { first, args... };
+	return std::accumulate(values.begin(), values.end(), First{ 0 });
 }
 
 
@@ -275,6 +283,20 @@ int main()
 	f(z); // deduces as f(int&& &&) => f(int&&)
 	cout << " f(z) - " << z << endl;
 	
+	// Template type parameter deduction with lvaluesand rvalues:
+
+	// Since C++11 or later:
+
+	int xx = 0;
+	f(0); // deduces as f(int&&)
+	f(xx); // deduces as f(int&)
+
+	int& xy = xx;
+	f(xy); // deduces as f(int& &&) => f(int&)
+
+	int&& xz = 0; // NOTE: `z` is an lvalue with type `int&&`.
+	f(xz); // deduces as f(int&& &) => f(int&)
+	f(std::move(xz)); // deduces as f(int&& &&) => f(int&&)
 
 //============================================================
 //  4. Variadic templates
@@ -286,6 +308,12 @@ int main()
 
 	static_assert(arity<>::value == 0);
 	static_assert(arity<char, short, int>::value == 3);
+
+	// An interesting use for this is creating an initializer list from a parameter pack in order 
+	// to iterate over variadic function arguments.
+	sumTemplate(1, 2, 3, 4, 5); // 15
+	sumTemplate(1, 2, 3);       // 6
+	sumTemplate(1.5, 2.0, 3.7); // 7.2
 
 
 //============================================================
@@ -531,7 +559,8 @@ int main()
 //============================================================
 //   17. Final specifier
 //============================================================
-	//	Specifies that a virtual function cannot be overridden in a derived class or that a class cannot be inherited from.
+	//	Specifies that a virtual function cannot be overridden in a derived class or that a class 
+	//  cannot be inherited from.
 
 	struct AA {
 		virtual void foo() {};
